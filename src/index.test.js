@@ -2,21 +2,21 @@
 describe("Pass all tests to win a T-shirt!", () => {
 
   it('Destructuring: extract value from array, e.g. extract 0 into x like so `let [x] = [0]`', () => {
-    let firstValue = [1]
+    let [firstValue] = [1]
 
     expect(firstValue).toEqual(1)
   })
 
   it('Default values: assign a default value to function parameters', () => {
     const defaultUser = {id: 23, name: 'Joe'}
-    const fn = ([user]) => {
+    const fn = ([user = defaultUser]) => {
       expect(user).toEqual(defaultUser)
     }
     fn([])
   })
 
   it('Rest Operator: can be used to get all other parameters', () => {
-    const fn = (firstParam, secondParam, rest) => {
+    const fn = (firstParam, secondParam, ...rest) => {
       expect([3,4]).toEqual(rest)
     }
     fn(null, 2, 3, 4)
@@ -29,9 +29,7 @@ describe("Pass all tests to win a T-shirt!", () => {
       add: function (age) {
         // finish the implementation of the next function using an arrow function
         // and using the parameter v
-        function f(v) {
-          return this.age
-        }
+        const f = (v) => this.age + v
 
         return f(age)
       },
@@ -53,7 +51,7 @@ describe("Pass all tests to win a T-shirt!", () => {
 
   it('map pets to match the string', () => {
     // Write a concise anonymous function using .map to return an array containing the array above
-    const petNames = __
+    const petNames = pets.map(pet => `${pet.name} is a ${pet.species}`)
 
     expect(petNames).toEqual([
       'guincho is a dog',
